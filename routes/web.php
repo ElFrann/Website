@@ -17,5 +17,7 @@ Route::resource('stock_logs', StockLogController::class);
 Route::resource('pembelian', PembelianController::class);
 Route::resource('penjualan', PenjualanController::class);
 
+Route::get('/get-jenis/{id_tanaman}', [PenyetekanController::class, 'getJenis'])->name('get-jenis');
+
 Route::resource('penyetekan', PenyetekanController::class);
 Route::post('/penyetekan/proses', [PenyetekanController::class, 'proses'])->name('penyetekan.proses');
