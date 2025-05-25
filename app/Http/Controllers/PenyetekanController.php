@@ -29,6 +29,17 @@ class PenyetekanController extends Controller
         return view('penyetekan.create', compact('id_tanaman_tersedia'));
     }
 
+    public function getJenis($id_tanaman)
+    // Dapatin dari tb pembelian
+    {
+        $tanaman = Pembelian::where('id_tanaman', $id_tanaman)->first();
+        if (!$tanaman) {
+            return response()->json(['error' => 'Tanaman not found'], 404);
+        }
+
+        return response()->json(['jenis' => $tanaman->jenis]);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
