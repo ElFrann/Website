@@ -57,6 +57,29 @@
         <a href="{{ route('penyetekan.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('#id_tanaman').on('change', function () {
+        const id = $(this).val();
+        if (id) {
+            $.ajax({
+                url: `http://127.0.0.1:8000/get-jenis/${id}`,
+                type: 'GET',
+                success: function (data) {
+                    $('#jenis').val(data.jenis);
+                },
+                error: function () {
+                    $('#jenis').val('');
+                    alert('Gagal mengambil data jenis.');
+                }
+            });
+        } else {
+            $('#jenis').val('');
+        }
+    });
+</script>
+
 @endsection
 
 @push('scripts')
